@@ -48,18 +48,6 @@ app.get('/', function (req, res) {
     res.render('index', {includeMetaDescription: true});
 });
 
-app.get('/faq', function (req, res) {
-    res.render('faq', {title: 'FAQ'});
-});
-
-app.get('/stats', function (req, res) {
-    res.render('stats', {title: 'Usage Statistics'});
-});
-
-app.get('/stats.html', function (req, res) {
-    res.redirect(301, '/stats');
-});
-
 // Don't allow requests for Google Webmaster Central verification files.
 app.get('*/google[0-9a-f]{16}.html',
     middleware.error403);
