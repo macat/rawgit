@@ -72,23 +72,6 @@ app.get('/:user/:repo/:branch/*',
     middleware.fileRedirect('https://raw.githubusercontent.com'),
     middleware.proxyPath('https://raw.githubusercontent.com'));
 
-// Stats API.
-app.get('/api/stats', function (req, res) {
-    var count = Math.max(0, Math.min(20, req.query.count || 10));
-
-    res.setHeader('Cache-Control', 'private, no-cache, no-store, max-age=0, must-revalidate');
-
-    res.jsonp({
-        status: 'success',
-
-        data: {
-            since    : stats.since,
-            files    : stats.files().slice(0, count),
-            referrers: stats.referrers().slice(0, count)
-        }
-    });
-});
-
 // -- Error handlers -----------------------------------------------------------
 app.use(function (req, res, next) {
     res.status(404);
